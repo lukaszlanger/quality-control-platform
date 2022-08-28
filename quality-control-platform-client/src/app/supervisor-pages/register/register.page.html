@@ -1,0 +1,66 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Rejestracja
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-item lines="none">
+      <ion-avatar class="item-avatar" slot="start">
+        <img src="../../../assets/icon/logo.png" height="200px" width="200px">
+      </ion-avatar >
+      <ion-label>
+        <h3>
+          Quality Control Platform
+        </h3>
+        <p>
+          Platforma do analizy wyników kontroli jakości
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-card>
+
+  <form [formGroup]="registerForm" (submit)="register()" autocomplete="off">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          Zarejestruj nowe konto pracownika
+        </ion-card-title>
+      </ion-card-header>
+      <ion-item lines="full">
+        <ion-label position="floating">Imię</ion-label>
+        <ion-input type="text" formControlName="name" [(ngModel)]="worker.name" autocomplete="off" required></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="floating">Nazwisko</ion-label>
+        <ion-input type="text" formControlName="surname" [(ngModel)]="worker.surname" autocomplete="off" required></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" formControlName="email" [(ngModel)]="worker.email" autocomplete="off" required></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="floating">Hasło</ion-label>
+        <ion-input type="password" formControlName="password" autocomplete="off" required></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label >Rola</ion-label>
+        <ion-select required formControlName="role" [(ngModel)]="worker.roleId" placeholder="Wybierz rolę użytkownika" [okText]="'Ok'" [cancelText]="'Anuluj'" >
+          <ion-select-option *ngFor="let r of rolesService.roles" value="{{r.roleId}}">{{r.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label>Konto aktywne:</ion-label>
+        <ion-checkbox formControlName="isActive" [(ngModel)]="worker.isActive"></ion-checkbox>
+      </ion-item>
+      <ion-row>
+        <ion-col>
+          <ion-button type="submit" expand="block" [disabled]="!registerForm.valid" checked>Zarejestruj</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </form>
+</ion-content>

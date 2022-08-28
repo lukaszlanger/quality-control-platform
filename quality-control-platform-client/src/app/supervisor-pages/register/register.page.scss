@@ -1,0 +1,18 @@
+@media(min-width: 992px) {
+    ion-content {
+        --padding-top: 2%;
+        --padding-start: 20%;
+        --padding-end: 20%;
+    }
+}
+
+.item-avatar  {     
+    width:100% !important;  
+    height : 100% !important;  
+    max-width: 70px !important;  //any size
+    max-height: 100px !important; //any size
+    }
+
+h3 {
+    font-size: 25px!important
+}

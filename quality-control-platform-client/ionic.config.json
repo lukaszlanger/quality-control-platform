@@ -1,0 +1,7 @@
+{
+  "name": "Quality Control Platform",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,50 @@
+<ion-app>
+  <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay">
+      <ion-content>
+        <ion-item lines="none">
+          <ion-avatar class="item-avatar" slot="start">
+            <img src="../../../assets/icon/logo.png" height="200px" width="200px">
+          </ion-avatar >
+          
+          <ion-label>
+            <h3>
+              Quality Control Platform
+            </h3>
+            <p>
+              Platforma do analizy wyników kontroli jakości
+            </p>
+            
+          </ion-label>
+        </ion-item>
+        <ion-list id="sidemenu-list">
+          <ion-list-header>
+            <ion-label>Menu</ion-label>
+          </ion-list-header>
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
+            <ion-item (click)="selectedIndex = i; redirectToPage(p.url)" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
+              <ion-icon slot="start" [md]="p.icon + '-outline'"></ion-icon>
+              <ion-label>{{ p.title }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+
+        <ion-list id="labels-list">
+          <ion-card>
+            <ion-item lines="none">
+              <ion-avatar slot="start">
+                <img src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg" />
+              </ion-avatar >
+              <ion-card-title>
+                {{ currentUser.displayName }}
+              </ion-card-title>
+            </ion-item>
+          </ion-card>
+          <ion-button fill="outline" slot="end" (click)="logout()">Wyloguj</ion-button>
+        </ion-list>
+        
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

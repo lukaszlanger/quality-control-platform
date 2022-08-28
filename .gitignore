@@ -1,0 +1,8 @@
+quality-control-platform-client/node_modules/
+quality-control-platform-client/android/
+quality-control-platform-client/e2e/
+quality-control-platform-client/resources/
+quality-control-platform-client/.browserslistrc
+quality-control-platform-webapi/.vs/
+quality-control-platform-webapi/quality-control-platform-webapi/bin/
+quality-control-platform-webapi/quality-control-platform-webapi/obj/

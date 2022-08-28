@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "quality-control-platform-webapi", "quality-control-platform-webapi\quality-control-platform-webapi.csproj", "{C03FAD06-FA3D-4945-B0E2-AF9BE5055693}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C03FAD06-FA3D-4945-B0E2-AF9BE5055693}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C03FAD06-FA3D-4945-B0E2-AF9BE5055693}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C03FAD06-FA3D-4945-B0E2-AF9BE5055693}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C03FAD06-FA3D-4945-B0E2-AF9BE5055693}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3E2C41B7-2F7B-42C7-95ED-43A1AE3975BF}
+	EndGlobalSection
+EndGlobal
