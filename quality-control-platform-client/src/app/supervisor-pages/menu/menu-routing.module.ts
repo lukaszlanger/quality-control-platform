@@ -14,8 +14,8 @@ const routes: Routes = [
         loadChildren: () => import('../folder/folder.module').then(m => m.FolderPageModule)
       },
       {
-        path: 'test',
-        loadChildren: () => import('../test/test.module').then(m => m.TestPageModule)
+        path: 'charts',
+        loadChildren: () => import('../charts/charts.module').then(m => m.ChartsPageModule)
       },
       {
         path: 'register',

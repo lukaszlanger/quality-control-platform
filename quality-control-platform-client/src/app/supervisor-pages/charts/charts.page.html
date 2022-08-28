@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Wykresy</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="content-center">
+  <ion-card class="welcome-card">
+    <ion-card-header>
+      <ion-card-subtitle>Wykres kontrolowanych produktów z podziałem na</ion-card-subtitle>
+      <ion-card-title>TYP SZKODY</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-select slot="start" placeholder="Miesiąc" [okText]="'Ok'" [cancelText]="'Anuluj'">
+        <ion-select-option>xd</ion-select-option>
+      </ion-select>
+      <canvas #barChart></canvas>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

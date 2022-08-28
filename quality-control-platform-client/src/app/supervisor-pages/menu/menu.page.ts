@@ -7,7 +7,7 @@ import { ItemsService } from 'src/app/services/items.service';
 import { ReportsService } from 'src/app/services/reports.service';
 import { RegisterPage } from '../register/register.page';
 import { ReportsPage } from '../reports/reports.page';
-import { TestPage } from '../test/test.page';
+import { ChartsPage } from '../charts/charts.page';
 
 @Component({
   selector: 'app-menu',
@@ -19,9 +19,9 @@ export class MenuPage implements OnInit {
 
   public appPages = [
     { title: 'Raporty oczekujące', url: 'reports/:waiting', icon: 'document', component: ReportsPage },
-    { title: 'Raporty zarchiwizowane', url: 'reports/:archived', icon: 'document', component: ReportsPage },
-    { title: 'Powiadomienia', url: 'folder/Favorites', icon: 'notifications' },
-    { title: 'Wykresy', url: 'test', icon: 'bar-chart', component: TestPage },
+    { title: 'Raporty zarchiwizowane', url: 'reports/:archived', icon: 'archive', component: ReportsPage },
+    { title: 'Powiadomienia', url: 'notifications', icon: 'notifications' },
+    { title: 'Wykresy', url: 'charts', icon: 'bar-chart', component: ChartsPage },
     { title: 'Zarejestruj pracownika', url: 'register', icon: 'person-add', component: RegisterPage },
   ];
 

@@ -1,7 +1,7 @@
 ion-content {
-    --padding-top: 10%;
-    --padding-start: 10%;
-    --padding-end: 10%;
+    --padding-top: 50%;
+    --padding-start: 8%;
+    --padding-end: 8%;
 }
 
 .item-avatar  {     
@@ -13,4 +13,13 @@ ion-content {
 
 h3 {
     font-size: 25px!important
+}
+
+@media(min-width: 792px) {
+    ion-content {
+        --padding-top: 10%;
+        --padding-start: 30%;
+        --padding-end: 30%;
+        --padding-bottom: 50%
+    }
 }

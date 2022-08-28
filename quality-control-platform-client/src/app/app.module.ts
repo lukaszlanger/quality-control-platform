@@ -19,7 +19,7 @@ import { AuthService } from './services/auth.service';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage';
-
+import { PDFGenerator } from '@ionic-native/pdf-generator/ngx';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 
 @NgModule({
@@ -51,7 +51,7 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
     Base64ToGallery,
     AndroidPermissions,
     AuthService,
-    
+    PDFGenerator
   ],
   bootstrap: [AppComponent],
 })

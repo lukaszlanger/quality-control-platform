@@ -20,7 +20,7 @@ export class ReportsPage implements OnInit {
   ReportAcceptance = ReportAcceptance;
   reportDetails = null;
   public routeId: string;
-
+// TODO dodac raportacceptance do puta
   constructor(
     private reportsService: ReportsService,
     private itemsService: ItemsService,
@@ -34,11 +34,13 @@ export class ReportsPage implements OnInit {
     this.itemsService.getItems().subscribe((response: Items[]) => this.itemsService.items = response);
   }
 
-  acceptReport(report: Reports) {
+  updateReportAcceptance(report: Reports, data: number) {
+    console.log(report);
     report.archivingDate = new Date();
     report.isArchived = true;
     report.decision = 1;
-    this.reportsService.putReport(report);
+    report.reportAcceptance = data;
+    this.reportsService.putReport(report).subscribe();
   }
 
   createPDF() {

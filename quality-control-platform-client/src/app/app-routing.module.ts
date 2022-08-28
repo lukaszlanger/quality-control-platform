@@ -36,14 +36,6 @@ const routes: Routes = [
       role: 'ROLE_SUPERVISOR'
     }
   },
-  {
-    path: 'menu',
-    loadChildren: () => import('./supervisor-pages/menu/menu.module').then( m => m.MenuPageModule)
-  },
-  {
-    path: 'reports',
-    loadChildren: () => import('./supervisor-pages/reports/reports.module').then( m => m.ReportsPageModule)
-  },
 ];
 @NgModule({
   imports: [

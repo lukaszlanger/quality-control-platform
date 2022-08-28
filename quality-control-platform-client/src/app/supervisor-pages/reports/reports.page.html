@@ -15,7 +15,7 @@
       </ion-card-title>
     </ion-card-header>
     <div *ngFor="let r of reportsService.reports">
-      <ion-list lines="none" *ngIf="r.reportAcceptance == 0 && routeId == ':waiting'">
+      <ion-list lines="none" *ngIf="r.reportAcceptance == 0 && !r.isArchived && routeId == ':waiting'">
         <ion-item-sliding>
           <ion-item>
             <ion-badge *ngIf="r.creationDate !== '0001-01-01T00:00:00'" slot="start">
@@ -39,22 +39,24 @@
             <ion-item-option id="{{'open-modal-' + r.reportId}}">
               <ion-icon name="information-circle-outline" style="font-size: 25px;"></ion-icon>
             </ion-item-option>
-            <ion-item-option (click)="createPDF()" color="success">
+            <ion-item-option (click)="updateReportAcceptance(r, 1)" color="success">
               <ion-icon name="checkmark-circle-outline" style="font-size: 25px;"></ion-icon>
             </ion-item-option>
-            <ion-item-option (click)="createPDF()" color="danger">
+            <ion-item-option (click)="updateReportAcceptance(r, 2)" color="danger">
               <ion-icon name="close-circle-outline" style="font-size: 25px;"></ion-icon>
             </ion-item-option>
           </ion-item-options>
         </ion-item-sliding>
       </ion-list>
 
-      <ion-list lines="none" *ngIf="(r.reportAcceptance == 1 || r.reportAcceptance == 2) && routeId == ':archived'">
+      <ion-list lines="none" *ngIf="(r.reportAcceptance == 1 || r.reportAcceptance == 2) && r.isArchived && routeId == ':archived'">
         <ion-item-sliding>
           <ion-item>
             <ion-badge *ngIf="r.archivingDate !== '0001-01-01T00:00:00' && r.archivingDate !== '1970-01-01T00:00:00'" slot="start">
               {{r.archivingDate | date: 'dd.MM.yyyy'}}
             </ion-badge>
+            <ion-icon slot="start" color="success" *ngIf="r.reportAcceptance == 1" name="checkmark-circle-outline" style="font-size: 30px;"></ion-icon>
+            <ion-icon slot="start" color="danger" *ngIf="r.reportAcceptance == 2" name="close-circle-outline" style="font-size: 30px;"></ion-icon>
             <ion-label>
               <h2>
                 <div *ngFor="let w of workersService.workers">
@@ -148,7 +150,7 @@
                 </ion-avatar>
                 <ion-label>
                   <h2>Data archiwizacji</h2>
-                  <p>{{r.archivingDate | date: 'dd.MM.yyyy r. HH:MM'}}</p>
+                  <p>{{r.archivingDate | date: 'dd.MM.yyyy r. hh:MM'}}</p>
                 </ion-label>
               </ion-item>
               <ion-item>
