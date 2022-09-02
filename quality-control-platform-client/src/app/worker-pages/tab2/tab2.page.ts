@@ -19,6 +19,7 @@ import { getDownloadURL } from 'firebase/storage';
 import { AuthService, User } from '../../services/auth.service';
 import { Workers } from '../../models/dtos/workers';
 import { WorkersService } from '../../services/workers.service';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
 @Component({
   selector: 'app-tab2',
@@ -58,6 +59,8 @@ export class Tab2Page implements OnInit {
   private uploadedReportPhotoPath: string;
   private reportPhotoName: string;
   private fireUploadTask: AngularFireUploadTask;
+  private base64Photo = null;
+  private photoPreview;
 
   public reportForm: FormGroup; 
 
@@ -107,6 +110,33 @@ export class Tab2Page implements OnInit {
 
   private getAllReports(): void {
     this.reportsService.getReports().subscribe((response: Reports[]) => this.reportsService.reports = response);
+  }
+
+  async takePhoto() {
+    const image = await Camera.getPhoto({
+      quality: 100,
+      allowEditing: true,
+      resultType: CameraResultType.Base64,
+      source: CameraSource.Camera
+    });
+    this.base64Photo = image.base64String;
+    this.photoPreview = `data:image/jpeg;base64,${this.base64Photo}`;
+
+    this.reportPhotoName = this.datePipe.transform(new Date(), 'YYYY-MM-dd_HH:mm:ss')+"__"+this.currentUser.uid;
+    const fileStoragePath = `photos/${this.reportPhotoName}`;
+    const imageFireStorageReference = this.angularFireStorage.ref(fileStoragePath);
+    this.fireUploadTask = this.angularFireStorage.ref(fileStoragePath).putString(this.base64Photo, 'base64', { contentType: 'image/png'});
+    this.fireUploadTask.snapshotChanges().pipe(
+      finalize(() => {
+        const downloadURL = imageFireStorageReference.getDownloadURL();
+        downloadURL.subscribe(async url => {
+          if(url) {
+            this.uploadedSignaturePhotoPath = url;
+            this.reportForm.get('_signature').setValue(this.uploadedSignaturePhotoPath);
+          }
+        })
+      })
+    ).subscribe();
   }
 
   async uploadReportPhoto(event: FileList) {

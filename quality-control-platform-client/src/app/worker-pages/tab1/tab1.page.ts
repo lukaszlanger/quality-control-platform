@@ -40,6 +40,7 @@ export class Tab1Page implements OnInit {
 
   ngOnInit(): void {
     this.reportDetails = document.querySelector('.ion-page');
+    this.currentWorker = this.workersService.workers.find(id => id.identityNumber === this.currentUser.uid);
   }
 
   logout() {

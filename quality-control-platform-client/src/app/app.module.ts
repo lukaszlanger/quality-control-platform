@@ -21,6 +21,7 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import { PDFGenerator } from '@ionic-native/pdf-generator/ngx';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { FileOpener } from '@ionic-native/file-opener/ngx/';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
     Base64ToGallery,
     AndroidPermissions,
     AuthService,
-    PDFGenerator
+    PDFGenerator, // TODO usunac
+    FileOpener,
   ],
   bootstrap: [AppComponent],
 })

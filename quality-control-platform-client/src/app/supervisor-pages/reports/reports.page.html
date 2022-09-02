@@ -21,6 +21,7 @@
             <ion-badge *ngIf="r.creationDate !== '0001-01-01T00:00:00'" slot="start">
               {{r.creationDate | date: 'dd.MM.yyyy'}}
             </ion-badge>
+            <ion-icon slot="start" color="warning" *ngIf="r.reportAcceptance == 0" name="pause-circle-outline" style="font-size: 30px;"></ion-icon>
             <ion-label>
               <h2>
                 <div *ngFor="let w of workersService.workers">

@@ -18,6 +18,8 @@ export class ChartsPage implements OnInit {
   Decision = Decision;
   @ViewChild('barChart') barChart;
   bars: any;
+  currentMonth: number = new Date().getMonth();
+  public months = ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'];
   
   // DAMAGE TYPE CHART
   private data0: number = 0;
@@ -34,26 +36,35 @@ export class ChartsPage implements OnInit {
     }
 
   ngOnInit() {
-    this.fetchDataDamageTypeChart();
+    this.fetchDataDamageTypeChart(this.currentMonth);
   }
 
-  fetchDataDamageTypeChart() {
+  fetchDataDamageTypeChart(month: number) {
+    this.data0 = 0;
+    this.data1 = 0;
+    this.data2 = 0;
+    this.data3 = 0;
+    this.data4 = 0;
     this.reportsService.reports.forEach(element => {
-      switch(element.damageType) {
-        case 0: this.data0 += 1;
-        case 1: this.data1 += 1;
-        case 2: this.data2 += 1;
-        case 3: this.data3 += 1;
-        case 4: this.data4 += 1;
+      const creationDateMonth = new Date(element.creationDate).getMonth();
+      if(creationDateMonth == month) {
+        switch(element.damageType) {
+          case 0: this.data0 += 1;
+          case 1: this.data1 += 1;
+          case 2: this.data2 += 1;
+          case 3: this.data3 += 1;
+          case 4: this.data4 += 1;
+        }
       }
     });
+    
   }
 
   ionViewDidEnter() {
-    this.createBarChart();
+    this.createDamageTypeChart();
   }
 
-  createBarChart() {
+  createDamageTypeChart() {
     this.bars = new Chart(this.barChart.nativeElement, {
       type: 'bar',
       data: {

@@ -41,7 +41,7 @@
                 <ion-textarea formControlName="_description" [(ngModel)]="report.description" type="text" placeholder="Opis"></ion-textarea>
               </ion-item>
               <ion-item>
-                <ion-button (click)="inputFile.click()" >
+                <ion-button (click)="takePhoto()" >
                   <ion-icon name="camera-outline"></ion-icon>Dołącz zdjęcie
                 </ion-button>
                 <input #inputFile id="input-file" style="opacity:0" type="file" (change)="uploadReportPhoto($event.target.files)"/>
@@ -61,7 +61,7 @@
               </ion-item>
             </div>
             <div>
-              <ion-button size="medium" type="submit" expand="block" [disabled]="!reportForm.valid">Prześlij</ion-button>
+              <ion-button size="medium" type="submit" expand="block" >Prześlij</ion-button>
             </div>
           </ion-col>
         </ion-row>

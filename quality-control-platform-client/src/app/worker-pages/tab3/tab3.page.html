@@ -1,17 +1,44 @@
-
-  <ion-header [translucent]="true">
-    <ion-toolbar>
-      <ion-title>
-        Tab 3
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Powiadomienia
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
+      <ion-title size="large">Powiadomienia</ion-title>
     </ion-toolbar>
   </ion-header>
 
+  <div *ngFor="let n of notificationsService.notifications">
+    <ion-card *ngIf="n.receiver === currentWorker.workerId">
+      <ion-list lines="none">
+        <ion-item-sliding>
+          <ion-item>
+            <ion-label>
+              <h2>
+                {{ getSender(n.sender) }} podjął decyzję w sprawie raportu
+              </h2>
+              <p *ngIf="n.type === 0">
+                Raport {{ n.reportId }} został zaakceptowany i zarchiwizowany
+              </p>
+              <p *ngIf="n.type === 1">
+                Raport {{ n.reportId }} został odrzucony i zarchiwizowany
+              </p>
+            </ion-label>
+            <ion-icon *ngIf="n.type === 0" color="success" name="checkmark-circle-outline"></ion-icon>
+            <ion-icon *ngIf="n.type === 1" color="danger" name="close-circle-outline"></ion-icon>
+          </ion-item>
+          <ion-item-options side="end">
+            <ion-item-option color="danger" (click)="deleteNotification(n.notificationId)">
+              <ion-icon name="trash-outline" style="font-size: 25px;"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+    </ion-card>
+  </div>
 </ion-content>

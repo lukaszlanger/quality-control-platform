@@ -8,11 +8,11 @@
   <ion-card class="welcome-card">
     <ion-card-header>
       <ion-card-subtitle>Wykres kontrolowanych produktów z podziałem na</ion-card-subtitle>
-      <ion-card-title>TYP SZKODY</ion-card-title>
+      <ion-card-title>Typ szkody</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-select slot="start" placeholder="Miesiąc" [okText]="'Ok'" [cancelText]="'Anuluj'">
-        <ion-select-option>xd</ion-select-option>
+      <ion-select slot="start" placeholder="Miesiąc" [okText]="'Ok'" [cancelText]="'Anuluj'" (change)="fetchDataDamageTypeChart($event.target.value)">
+        <ion-select-option *ngFor="let m of months; index as i" value='{{i}}'>{{m}}</ion-select-option>
       </ion-select>
       <canvas #barChart></canvas>
     </ion-card-content>

@@ -1,6 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   Auth,
@@ -10,9 +8,7 @@ import {
   updateProfile
 } from '@angular/fire/auth';
 import { WorkersService } from './workers.service';
-import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/compat/storage';
 import { Workers } from '../models/dtos/workers';
-import { updateCurrentUser } from 'firebase/auth';
 import { BehaviorSubject, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Storage } from '@capacitor/storage';
