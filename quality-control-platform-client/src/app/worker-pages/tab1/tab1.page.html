@@ -51,7 +51,7 @@
                 Wada: {{ DamageType[r.damageType] }}
               </p>
             </ion-label>
-              <ion-icon *ngIf="r.reportAcceptance == 0" color="warning" name="pause-circle-outline"></ion-icon>
+              <ion-icon *ngIf="r.reportAcceptance === 0" color="warning" name="pause-circle-outline"></ion-icon>
           </ion-item>
 
           <ion-item-options side="start">
@@ -106,9 +106,9 @@
               </ion-item>
               <ion-item>
                 <ion-avatar slot="start">
-                  <ion-icon *ngIf="r.reportAcceptance == 0" name="pause-circle-outline" style="font-size: 30px;"></ion-icon>
-                  <ion-icon *ngIf="r.reportAcceptance == 1" name="checkmark-circle-outline" style="font-size: 30px;"></ion-icon>
-                  <ion-icon *ngIf="r.reportAcceptance == 2" name="close-circle-outline" style="font-size: 30px;"></ion-icon>
+                  <ion-icon *ngIf="r.reportAcceptance === 0" name="pause-circle-outline" style="font-size: 30px;"></ion-icon>
+                  <ion-icon *ngIf="r.reportAcceptance === 1" name="checkmark-circle-outline" style="font-size: 30px;"></ion-icon>
+                  <ion-icon *ngIf="r.reportAcceptance === 2" name="close-circle-outline" style="font-size: 30px;"></ion-icon>
                 </ion-avatar>
                 <ion-label>
                   <h2>Status raportu</h2>
@@ -182,8 +182,8 @@
                 Wada: {{ DamageType[r.damageType] }}
               </p>
             </ion-label>
-            <ion-icon *ngIf="r.reportAcceptance == 1" color="success" name="checkmark-circle-outline"></ion-icon>
-            <ion-icon *ngIf="r.reportAcceptance == 2" color="danger" name="close-circle-outline"></ion-icon>
+            <ion-icon *ngIf="r.reportAcceptance === 1" color="success" name="checkmark-circle-outline"></ion-icon>
+            <ion-icon *ngIf="r.reportAcceptance === 2" color="danger" name="close-circle-outline"></ion-icon>
           </ion-item>
 
           <ion-item-options side="start">
@@ -238,9 +238,9 @@
               </ion-item>
               <ion-item>
                 <ion-avatar slot="start">
-                  <ion-icon *ngIf="r.reportAcceptance == 0" name="pause-circle-outline" style="font-size: 30px;"></ion-icon>
-                  <ion-icon *ngIf="r.reportAcceptance == 1" name="checkmark-circle-outline" style="font-size: 30px;"></ion-icon>
-                  <ion-icon *ngIf="r.reportAcceptance == 2" name="close-circle-outline" style="font-size: 30px;"></ion-icon>
+                  <ion-icon *ngIf="r.reportAcceptance === 0" name="pause-circle-outline" style="font-size: 30px;"></ion-icon>
+                  <ion-icon *ngIf="r.reportAcceptance === 1" name="checkmark-circle-outline" style="font-size: 30px;"></ion-icon>
+                  <ion-icon *ngIf="r.reportAcceptance === 2" name="close-circle-outline" style="font-size: 30px;"></ion-icon>
                 </ion-avatar>
                 <ion-label>
                   <h2>Status raportu</h2>

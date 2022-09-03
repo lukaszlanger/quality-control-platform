@@ -13,7 +13,7 @@ import { WorkersService } from '../../services/workers.service';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss']
+  styleUrls: ['tab1.page.scss'],
 })
 export class Tab1Page implements OnInit {
   currentWorker: Workers;
@@ -28,22 +28,35 @@ export class Tab1Page implements OnInit {
     private itemsService: ItemsService,
     private workersService: WorkersService,
     private authService: AuthService
-    ) {
-      this.reportsService.getReports().subscribe((response: Reports[]) => this.reportsService.reports = response);
-      this.itemsService.getItems().subscribe((response: Items[]) => this.itemsService.items = response);
-      this.workersService.getWorkers().subscribe((response: Workers[]) => this.workersService.workers = response);
-      this.authService.getCurrentUser().subscribe(res => this.currentUser = res);
-    }
+  ) {
+    this.reportsService
+      .getReports()
+      .subscribe(
+        (response: Reports[]) => (this.reportsService.reports = response)
+      );
+    this.itemsService
+      .getItems()
+      .subscribe((response: Items[]) => (this.itemsService.items = response));
+    this.workersService
+      .getWorkers()
+      .subscribe(
+        (response: Workers[]) => (this.workersService.workers = response)
+      );
+    this.authService
+      .getCurrentUser()
+      .subscribe((res) => (this.currentUser = res));
+  }
 
   ngOnInit(): void {
     this.reportDetails = document.querySelector('.ion-page');
-    this.currentWorker = this.workersService.workers.find(id => id.identityNumber === this.currentUser.uid);
+    this.currentWorker = this.workersService.workers.find(
+      (id) => id.identityNumber === this.currentUser.uid
+    );
   }
 
   logout() {
     return this.authService.logoutUser();
   }
 
-  createPDF() {
-  }
+  createPDF() {}
 }

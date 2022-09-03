@@ -18,21 +18,40 @@ export class MenuPage implements OnInit {
   currentUser: User;
 
   public appPages = [
-    { title: 'Raporty oczekujące', url: 'reports/:waiting', icon: 'document', component: ReportsPage },
-    { title: 'Raporty zarchiwizowane', url: 'reports/:archived', icon: 'archive', component: ReportsPage },
-    { title: 'Wykresy', url: 'charts', icon: 'bar-chart', component: ChartsPage },
-    { title: 'Zarejestruj pracownika', url: 'register', icon: 'person-add', component: RegisterPage },
+    {
+      title: 'Raporty oczekujące',
+      url: 'reports/:waiting',
+      icon: 'document',
+      component: ReportsPage,
+    },
+    {
+      title: 'Raporty zarchiwizowane',
+      url: 'reports/:archived',
+      icon: 'archive',
+      component: ReportsPage,
+    },
+    {
+      title: 'Wykresy',
+      url: 'charts',
+      icon: 'bar-chart',
+      component: ChartsPage,
+    },
+    {
+      title: 'Zarejestruj pracownika',
+      url: 'register',
+      icon: 'person-add',
+      component: RegisterPage,
+    },
   ];
 
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
-  constructor(
-    private router: Router,
-    private authService: AuthService,
-  ) { }
+  constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit() {
-    this.authService.getCurrentUser().subscribe(res => this.currentUser = res);
+    this.authService
+      .getCurrentUser()
+      .subscribe((res) => (this.currentUser = res));
   }
 
   redirectToPage(url: string) {

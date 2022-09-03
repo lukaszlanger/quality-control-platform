@@ -2,10 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy, RouterModule } from '@angular/router';
 import { Base64ToGallery } from '@ionic-native/base64-to-gallery/ngx/';
-
-import {AndroidPermissions} from '@ionic-native/android-permissions/ngx/';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx/';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -19,14 +17,11 @@ import { AuthService } from './services/auth.service';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage';
-import { PDFGenerator } from '@ionic-native/pdf-generator/ngx';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { FileOpener } from '@ionic-native/file-opener/ngx/';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => getAuth()),
@@ -44,15 +39,12 @@ import { FileOpener } from '@ionic-native/file-opener/ngx/';
     CommonModule,
     RouterModule,
   ],
-  exports: [
-  ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     DatePipe,
     Base64ToGallery,
     AndroidPermissions,
     AuthService,
-    PDFGenerator, // TODO usunac
     FileOpener,
   ],
   bootstrap: [AppComponent],

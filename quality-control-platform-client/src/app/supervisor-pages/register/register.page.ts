@@ -22,8 +22,8 @@ export class RegisterPage implements OnInit {
     email: '',
     identityNumber: '',
     roleId: null,
-    isActive: true
-  }
+    isActive: true,
+  };
 
   constructor(
     public authService: AuthService,
@@ -32,11 +32,17 @@ export class RegisterPage implements OnInit {
     private loadingController: LoadingController,
     private form: FormBuilder,
     private router: Router,
-    private alertController: AlertController,
-    ) {
-      this.workersService.getWorkers().subscribe((response: Workers[]) => this.workersService.workers = response);
-      this.rolesService.getRoles().subscribe((response: Roles[]) => this.rolesService.roles = response);
-    }
+    private alertController: AlertController
+  ) {
+    this.workersService
+      .getWorkers()
+      .subscribe(
+        (response: Workers[]) => (this.workersService.workers = response)
+      );
+    this.rolesService
+      .getRoles()
+      .subscribe((response: Roles[]) => (this.rolesService.roles = response));
+  }
 
   ngOnInit() {
     this.registerForm = this.form.group({
@@ -45,7 +51,7 @@ export class RegisterPage implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       role: [null, [Validators.required]],
-      isActive: [null]
+      isActive: [null],
     });
   }
 
@@ -72,32 +78,36 @@ export class RegisterPage implements OnInit {
     const loading = await this.loadingController.create();
     await loading.present();
 
-    if(this.registerForm.valid) {
+    if (this.registerForm.valid) {
       const userRegistration = await this.authService.registerUser({
-        email: this.email, 
-        password: this.password, 
-        name: this.name, 
-        surname: this.surname, 
-        role: this.role, 
-        isActive: this.isActive
+        email: this.email,
+        password: this.password,
+        name: this.name,
+        surname: this.surname,
+        role: this.role,
+        isActive: this.isActive,
       });
 
       if (userRegistration) {
         const alertRegistrationSuccessed = await this.alertController.create({
           header: 'Sukces!',
-          message: 'Rejestracja konta "' + this.name + ' ' + this.surname + ' zakończona pomyślnie.',
-          buttons: ['OK']
+          message:
+            'Rejestracja konta "' +
+            this.name +
+            ' ' +
+            this.surname +
+            ' zakończona pomyślnie.',
+          buttons: ['OK'],
         });
         alertRegistrationSuccessed.present();
       } else {
         const alertRegistrationFailed = await this.alertController.create({
           header: 'Błąd!',
           message: 'Rejestracja nie powiodła się, spróbuj ponownie!',
-          buttons: ['OK']
+          buttons: ['OK'],
         });
         alertRegistrationFailed.present();
       }
-
     }
     await loading.dismiss();
   }

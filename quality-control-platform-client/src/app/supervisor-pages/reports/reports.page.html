@@ -7,21 +7,21 @@
 <ion-content class="content-center">
   <ion-card>
     <ion-card-header>
-      <ion-card-title *ngIf="routeId == ':waiting'">
+      <ion-card-title *ngIf="routeId === ':waiting'">
         Raporty oczekujące na decyzję
       </ion-card-title>
-      <ion-card-title *ngIf="routeId == ':archived'">
+      <ion-card-title *ngIf="routeId === ':archived'">
         Raporty zarchiwizowane
       </ion-card-title>
     </ion-card-header>
     <div *ngFor="let r of reportsService.reports">
-      <ion-list lines="none" *ngIf="r.reportAcceptance == 0 && !r.isArchived && routeId == ':waiting'">
+      <ion-list lines="none" *ngIf="r.reportAcceptance === 0 && !r.isArchived && routeId === ':waiting'">
         <ion-item-sliding>
           <ion-item>
             <ion-badge *ngIf="r.creationDate !== '0001-01-01T00:00:00'" slot="start">
               {{r.creationDate | date: 'dd.MM.yyyy'}}
             </ion-badge>
-            <ion-icon slot="start" color="warning" *ngIf="r.reportAcceptance == 0" name="pause-circle-outline" style="font-size: 30px;"></ion-icon>
+            <ion-icon slot="start" color="warning" *ngIf="r.reportAcceptance === 0" name="pause-circle-outline" style="font-size: 30px;"></ion-icon>
             <ion-label>
               <h2>
                 <div *ngFor="let w of workersService.workers">
@@ -50,14 +50,14 @@
         </ion-item-sliding>
       </ion-list>
 
-      <ion-list lines="none" *ngIf="(r.reportAcceptance == 1 || r.reportAcceptance == 2) && r.isArchived && routeId == ':archived'">
+      <ion-list lines="none" *ngIf="(r.reportAcceptance === 1 || r.reportAcceptance === 2) && r.isArchived && routeId === ':archived'">
         <ion-item-sliding>
           <ion-item>
             <ion-badge *ngIf="r.archivingDate !== '0001-01-01T00:00:00' && r.archivingDate !== '1970-01-01T00:00:00'" slot="start">
               {{r.archivingDate | date: 'dd.MM.yyyy'}}
             </ion-badge>
-            <ion-icon slot="start" color="success" *ngIf="r.reportAcceptance == 1" name="checkmark-circle-outline" style="font-size: 30px;"></ion-icon>
-            <ion-icon slot="start" color="danger" *ngIf="r.reportAcceptance == 2" name="close-circle-outline" style="font-size: 30px;"></ion-icon>
+            <ion-icon slot="start" color="success" *ngIf="r.reportAcceptance === 1" name="checkmark-circle-outline" style="font-size: 30px;"></ion-icon>
+            <ion-icon slot="start" color="danger" *ngIf="r.reportAcceptance === 2" name="close-circle-outline" style="font-size: 30px;"></ion-icon>
             <ion-label>
               <h2>
                 <div *ngFor="let w of workersService.workers">
@@ -127,9 +127,9 @@
               </ion-item>
               <ion-item>
                 <ion-avatar slot="start">
-                  <ion-icon *ngIf="r.reportAcceptance == 0" name="pause-circle-outline" style="font-size: 30px;"></ion-icon>
-                  <ion-icon *ngIf="r.reportAcceptance == 1" name="checkmark-circle-outline" style="font-size: 30px;"></ion-icon>
-                  <ion-icon *ngIf="r.reportAcceptance == 2" name="close-circle-outline" style="font-size: 30px;"></ion-icon>
+                  <ion-icon *ngIf="r.reportAcceptance === 0" name="pause-circle-outline" style="font-size: 30px;"></ion-icon>
+                  <ion-icon *ngIf="r.reportAcceptance === 1" name="checkmark-circle-outline" style="font-size: 30px;"></ion-icon>
+                  <ion-icon *ngIf="r.reportAcceptance === 2" name="close-circle-outline" style="font-size: 30px;"></ion-icon>
                 </ion-avatar>
                 <ion-label>
                   <h2>Status raportu</h2>

@@ -6,16 +6,17 @@ import { GlobalVariables } from '../global-variables';
 import { Roles } from '../models/dtos/roles';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RolesService {
-
-  readonly rolesURL = "Roles";
+  readonly rolesURL = 'Roles';
   roles: Roles[];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   public getRoles(): Observable<Roles[]> {
-    return this.http.get<Roles[]>(GlobalVariables.apiURL+this.rolesURL).pipe(tap(response => this.roles = response))
+    return this.http
+      .get<Roles[]>(GlobalVariables.apiURL + this.rolesURL)
+      .pipe(tap((response) => (this.roles = response)));
   }
 }

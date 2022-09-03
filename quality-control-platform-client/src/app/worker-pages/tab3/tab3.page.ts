@@ -7,7 +7,7 @@ import { WorkersService } from 'src/app/services/workers.service';
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
-  styleUrls: ['tab3.page.scss']
+  styleUrls: ['tab3.page.scss'],
 })
 export class Tab3Page implements OnInit {
   currentWorker: Workers;
@@ -16,27 +16,43 @@ export class Tab3Page implements OnInit {
   constructor(
     private notificationsService: NotificationsService,
     private workersService: WorkersService,
-    private authService: AuthService,
+    private authService: AuthService
   ) {
     this.getNotifications();
-    this.workersService.getWorkers().subscribe((response: Workers[]) => this.workersService.workers = response);
-    this.authService.getCurrentUser().subscribe(res => this.currentUser = res);
+    this.workersService
+      .getWorkers()
+      .subscribe(
+        (response: Workers[]) => (this.workersService.workers = response)
+      );
+    this.authService
+      .getCurrentUser()
+      .subscribe((res) => (this.currentUser = res));
   }
 
   ngOnInit(): void {
-    this.currentWorker = this.workersService.workers.find(response => response.identityNumber === this.currentUser.uid);
+    this.currentWorker = this.workersService.workers.find(
+      (response) => response.identityNumber === this.currentUser.uid
+    );
   }
 
   public getSender(id: number): string {
-    let sender: Workers = this.workersService.workers.find(response => response.workerId === id);
+    const sender: Workers = this.workersService.workers.find(
+      (response) => response.workerId === id
+    );
     return sender.name + ' ' + sender.surname;
   }
 
   private getNotifications() {
-    this.notificationsService.getNotifications().subscribe(response => this.notificationsService.notifications = response);
+    this.notificationsService
+      .getNotifications()
+      .subscribe(
+        (response) => (this.notificationsService.notifications = response)
+      );
   }
 
-  public deleteNotification(id: number) {
-    this.notificationsService.deleteNotification(id).subscribe(response => this.getNotifications());
+  private deleteNotification(id: number) {
+    this.notificationsService
+      .deleteNotification(id)
+      .subscribe((response) => this.getNotifications());
   }
 }

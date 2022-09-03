@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { report } from 'process';
 import { Items } from 'src/app/models/dtos/items';
 import { Notifications } from 'src/app/models/dtos/notifications';
 import { Reports } from 'src/app/models/dtos/reports';
@@ -14,7 +13,6 @@ import { ReportsService } from 'src/app/services/reports.service';
 import { WorkersService } from 'src/app/services/workers.service';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
-import { LoginPageModule } from 'src/app/login/login.module';
 import { AuthService, User } from 'src/app/services/auth.service';
 import { DatePipe } from '@angular/common';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
@@ -53,7 +51,9 @@ export class ReportsPage implements OnInit {
     this.itemsService
       .getItems()
       .subscribe((response: Items[]) => (this.itemsService.items = response));
-    this.authService.getCurrentUser().subscribe(res => this.currentUser = res);
+    this.authService
+      .getCurrentUser()
+      .subscribe((res) => (this.currentUser = res));
   }
 
   async updateReportAcceptance(report: Reports, acceptance: number) {
@@ -83,7 +83,7 @@ export class ReportsPage implements OnInit {
       buttons: ['OK'],
     });
     await alert.present();
-    let res = await (await alert.onDidDismiss()).data;
+    const res = await (await alert.onDidDismiss()).data;
     report.decision = Number(res.data);
     this.reportsService.putReport(report).subscribe();
     this.createNotification(
@@ -96,15 +96,15 @@ export class ReportsPage implements OnInit {
 
   getBase64ImageFromURL(url) {
     return new Promise((resolve, reject) => {
-      var img = new Image();
+      const img = new Image();
       img.setAttribute('crossOrigin', 'anonymous');
       img.onload = () => {
-        var canvas = document.createElement('canvas');
+        const canvas = document.createElement('canvas');
         canvas.width = img.width;
         canvas.height = img.height;
-        var ctx = canvas.getContext('2d');
+        const ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0);
-        var dataURL = canvas.toDataURL('image/png');
+        const dataURL = canvas.toDataURL('image/png');
         resolve(dataURL);
       };
       img.onerror = (error) => {
@@ -122,16 +122,15 @@ export class ReportsPage implements OnInit {
     const item = this.itemsService.items.find(
       (response) => response.itemId === report.itemId
     );
-    
+
     const worker = this.workersService.workers.find(
       (response) => response.workerId === report.workerId
     );
 
-    var docDefinition = {
+    const docDefinition = {
       content: [
         {
           columns: [
-            
             {
               image: 'logo',
               width: 50,
@@ -149,7 +148,8 @@ export class ReportsPage implements OnInit {
           ],
         },
         '\n\n',
-        'Raport z analizy wyników kontroli jakości wykonanej w dniu ' + this.datePipe.transform(report.creationDate, 'dd.MM.YYYY r. HH:mm'),
+        'Raport z analizy wyników kontroli jakości wykonanej w dniu ' +
+          this.datePipe.transform(report.creationDate, 'dd.MM.YYYY r. HH:mm'),
         'Raport sprawdzony i oceniony przez ' + this.currentUser.displayName,
         '\n',
         {
@@ -244,7 +244,7 @@ export class ReportsPage implements OnInit {
             {
               width: '100%',
               text: report.description,
-              alignment: 'justify'
+              alignment: 'justify',
             },
           ],
         },
@@ -266,7 +266,10 @@ export class ReportsPage implements OnInit {
           columns: [
             {
               width: '50%',
-              text: this.datePipe.transform(report.archivingDate, 'dd.MM.YYYY r. HH:mm'),
+              text: this.datePipe.transform(
+                report.archivingDate,
+                'dd.MM.YYYY r. HH:mm'
+              ),
             },
             {
               width: '50%',
@@ -289,8 +292,12 @@ export class ReportsPage implements OnInit {
       ],
       images: {
         logo: await this.getBase64ImageFromURL('../../../assets/icon/logo.png'),
-        reportPhoto: await this.getBase64ImageFromURL('../../../assets/icon/tarcza.jpg'),
-        signature: await this.getBase64ImageFromURL('../../../assets/icon/podpis.png')
+        reportPhoto: await this.getBase64ImageFromURL(
+          '../../../assets/icon/tarcza.jpg'
+        ),
+        signature: await this.getBase64ImageFromURL(
+          '../../../assets/icon/podpis.png'
+        ),
       },
       styles: {
         header: {
@@ -318,7 +325,7 @@ export class ReportsPage implements OnInit {
     sender: number,
     reportId: number
   ) {
-    let notification: Notifications = {
+    const notification: Notifications = {
       sender: sender,
       receiver: receiver,
       reportId: reportId,

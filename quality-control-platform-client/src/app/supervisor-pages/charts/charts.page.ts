@@ -23,8 +23,21 @@ export class ChartsPage implements OnInit {
   lines: any;
   currentMonth: number = new Date().getMonth();
   chosenMonth: number = new Date().getMonth();
-  public months = ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'];
-  
+  public months = [
+    'Styczeń',
+    'Luty',
+    'Marzec',
+    'Kwiecień',
+    'Maj',
+    'Czerwiec',
+    'Lipiec',
+    'Sierpień',
+    'Wrzesień',
+    'Październik',
+    'Listopad',
+    'Grudzień',
+  ];
+
   // DAMAGE TYPE CHART
   private data0: number;
   private data1: number;
@@ -34,39 +47,44 @@ export class ChartsPage implements OnInit {
 
   constructor(
     private reportsService: ReportsService,
-    private http: HttpClient, 
+    private http: HttpClient,
     private router: Router,
-    private alertController: AlertController) {
-      this.reportsService.getReports().subscribe((response: Reports[]) => this.reportsService.reports = response);
-      this.fetchDataDamageTypeChart(this.currentMonth);
-    }
-
-  ngOnInit() {
-    
+    private alertController: AlertController
+  ) {
+    this.reportsService
+      .getReports()
+      .subscribe(
+        (response: Reports[]) => (this.reportsService.reports = response)
+      );
+    this.fetchDataDamageTypeChart(this.currentMonth);
   }
 
+  ngOnInit() {}
+
   async onMonthButtonClick() {
-    let monthsInputs = [];
-    for(let i = 0; i < this.months.length; i++) {
+    const monthsInputs = [];
+    for (let i = 0; i < this.months.length; i++) {
       monthsInputs.push({
         type: 'radio',
         label: this.months[i],
-        value: i
-      })
+        value: i,
+      });
     }
-    let alert = await this.alertController.create({
+    const alert = await this.alertController.create({
       header: 'Wybierz miesiąc',
       inputs: monthsInputs,
-      buttons: [{
-        text: 'OK',
-        handler(value) {
-          this.chosenMonth = value
+      buttons: [
+        {
+          text: 'OK',
+          handler(value) {
+            this.chosenMonth = value;
+          },
         },
-      }],
+      ],
     });
     await alert.present();
-    let response = await (await alert.onDidDismiss()).data;
-    let valueMonth = Number(response.data);
+    const response = await (await alert.onDidDismiss()).data;
+    const valueMonth = Number(response.data);
     //this.chosenMonth = valueMonth;
     this.fetchDataDamageTypeChart(valueMonth);
     console.log(this.chosenMonth);
@@ -109,22 +127,24 @@ export class ChartsPage implements OnInit {
           DamageType[2],
           DamageType[3],
           DamageType[4],
-          ],
-        datasets: [{
-          label: 'Ilość przedmiotów',
-          data: [this.data0, this.data1, this.data2, this.data3, this.data4],
-          backgroundColor: 'rgb(38, 194, 129)', // array should have same number of elements as number of dataset
-          borderColor: 'rgb(38, 194, 129)',// array should have same number of elements as number of dataset
-          borderWidth: 1
-        }]
+        ],
+        datasets: [
+          {
+            label: 'Ilość przedmiotów',
+            data: [this.data0, this.data1, this.data2, this.data3, this.data4],
+            backgroundColor: 'rgb(38, 194, 129)', // array should have same number of elements as number of dataset
+            borderColor: 'rgb(38, 194, 129)', // array should have same number of elements as number of dataset
+            borderWidth: 1,
+          },
+        ],
       },
       options: {
         scales: {
           y: {
-              beginAtZero: true
-          }
-        }
-      }
+            beginAtZero: true,
+          },
+        },
+      },
     });
   }
 
@@ -145,24 +165,35 @@ export class ChartsPage implements OnInit {
           this.months[9],
           this.months[10],
           this.months[11],
-          ],
-        datasets: [{
-          label: 'Ilość zgłoszonych szkód w miesiącu',
-          data: [this.data0, this.data1, this.data2, this.data3, this.data4, 15,9,5,11],
-          backgroundColor: 'rgb(38, 194, 129)', // array should have same number of elements as number of dataset
-          borderColor: 'rgb(38, 194, 129)',// array should have same number of elements as number of dataset
-          borderWidth: 1
-        }]
+        ],
+        datasets: [
+          {
+            label: 'Ilość zgłoszonych szkód w miesiącu',
+            data: [
+              this.data0,
+              this.data1,
+              this.data2,
+              this.data3,
+              this.data4,
+              15,
+              9,
+              5,
+              11,
+            ],
+            backgroundColor: 'rgb(38, 194, 129)', // array should have same number of elements as number of dataset
+            borderColor: 'rgb(38, 194, 129)', // array should have same number of elements as number of dataset
+            borderWidth: 1,
+          },
+        ],
       },
       options: {
         indexAxis: 'x',
         scales: {
           y: {
-              beginAtZero: true
-          }
-        }
-      }
+            beginAtZero: true,
+          },
+        },
+      },
     });
   }
-
 }
