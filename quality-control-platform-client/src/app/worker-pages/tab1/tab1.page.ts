@@ -1,7 +1,4 @@
-import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
 import { Items } from '../../models/dtos/items';
 import { Reports } from '../../models/dtos/reports';
 import { Workers } from '../../models/dtos/workers';

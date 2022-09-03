@@ -70,7 +70,7 @@
                 Wada: {{ DamageType[r.damageType] }}
               </p>
             </ion-label>
-            <ion-button fill="outline" type="button">
+            <ion-button fill="outline" type="button" (click)="createPDF(r.reportId)">
               Generuj plik PDF
             </ion-button>
           </ion-item>
