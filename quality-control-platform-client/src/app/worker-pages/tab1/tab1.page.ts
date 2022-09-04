@@ -57,6 +57,4 @@ export class Tab1Page implements OnInit {
   logout() {
     return this.authService.logoutUser();
   }
-
-  createPDF() {}
 }

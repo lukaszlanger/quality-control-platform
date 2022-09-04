@@ -25,9 +25,9 @@ export class AuthGuard implements CanActivate {
           this.showNotLoggedInAlert();
           return this.router.parseUrl('/login');
         } else {
-          const role = user['role'];
+          const role = user.role;
 
-          if (!roleExpected || roleExpected == role) {
+          if (!roleExpected || roleExpected === role) {
             return true;
           } else {
             this.showUnauthorizedAlert();
@@ -39,7 +39,7 @@ export class AuthGuard implements CanActivate {
   }
 
   async showUnauthorizedAlert() {
-    let alert = await this.alertController.create({
+    const alert = await this.alertController.create({
       header: 'Błąd autoryzacji',
       message: 'Nie jesteś uprawniony do odwiedzenia tej strony!',
       buttons: ['OK']
@@ -48,7 +48,7 @@ export class AuthGuard implements CanActivate {
   };
 
   async showNotLoggedInAlert() {
-    let alert = await this.alertController.create({
+    const alert = await this.alertController.create({
       header: 'Błąd autoryzacji',
       message: 'Nie jesteś zalogowany! Spróbuj ponownie',
       buttons: ['OK']

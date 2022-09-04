@@ -39,6 +39,7 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
   styleUrls: ['tab2.page.scss'],
 })
 export class Tab2Page implements OnInit {
+  @ViewChild('canvas', { static: true }) signaturePadElement;
   currentUser: User;
   currentWorker: Workers;
   private report: Reports = {
@@ -56,7 +57,6 @@ export class Tab2Page implements OnInit {
   };
 
   // CANVAS
-  @ViewChild('canvas', { static: true }) signaturePadElement;
   private signaturePad: any;
   private uploadedSignaturePhotoPath: string;
   private signaturePhotoName: string;
@@ -80,6 +80,11 @@ export class Tab2Page implements OnInit {
     private alertController: AlertController,
     private datePipe: DatePipe
   ) {}
+
+  @HostListener('window:resize', ['$event'])
+  private onResize() {
+    this.initCanvas();
+  }
 
   public damageTypeKeys(): Array<string> {
     const keys = Object.keys(DamageType);
@@ -191,11 +196,6 @@ export class Tab2Page implements OnInit {
         })
       )
       .subscribe();
-  }
-
-  @HostListener('window:resize', ['$event'])
-  private onResize() {
-    this.initCanvas();
   }
 
   private initCanvas() {

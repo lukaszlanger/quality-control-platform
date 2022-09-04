@@ -2,10 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
-import { getAuth } from 'firebase/auth';
-import { Workers } from '../models/dtos/workers';
 import { AuthService } from '../services/auth.service';
-import { WorkersService } from '../services/workers.service';
 
 @Component({
   selector: 'app-login',
@@ -14,11 +11,9 @@ import { WorkersService } from '../services/workers.service';
 })
 export class LoginPage implements OnInit {
   loginForm: FormGroup;
-  currentWorker: Workers;
 
   constructor(
     public authService: AuthService,
-    private workersService: WorkersService,
     private loadingController: LoadingController,
     private form: FormBuilder,
     private router: Router
@@ -29,14 +24,6 @@ export class LoginPage implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
-  }
-
-  get email() {
-    return this.loginForm.get('email');
-  }
-
-  get password() {
-    return this.loginForm.get('password');
   }
 
   async login() {
@@ -53,9 +40,5 @@ export class LoginPage implements OnInit {
       }
     );
     await loading.dismiss();
-  }
-
-  redirectToRegister() {
-    this.router.navigateByUrl('register', { replaceUrl: true });
   }
 }

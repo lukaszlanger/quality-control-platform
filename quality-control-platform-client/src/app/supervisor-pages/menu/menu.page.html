@@ -22,7 +22,7 @@
             <ion-label>Menu</ion-label>
           </ion-list-header>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item (click)="selectedIndex = i; redirectToPage(p.url)" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
+            <ion-item (click)="selectedIndex = i; redirectToPage(p.url)" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex === i">
               <ion-icon slot="start" [md]="p.icon + '-outline'"></ion-icon>
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>

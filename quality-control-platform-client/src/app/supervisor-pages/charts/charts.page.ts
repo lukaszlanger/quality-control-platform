@@ -15,8 +15,6 @@ Chart.register(...registerables);
   styleUrls: ['./charts.page.scss'],
 })
 export class ChartsPage implements OnInit {
-  DamageType = DamageType;
-  Decision = Decision;
   @ViewChild('barChart') barChart;
   @ViewChild('lineChart') lineChart;
   bars: any;
@@ -47,8 +45,6 @@ export class ChartsPage implements OnInit {
 
   constructor(
     private reportsService: ReportsService,
-    private http: HttpClient,
-    private router: Router,
     private alertController: AlertController
   ) {
     this.reportsService

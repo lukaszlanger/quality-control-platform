@@ -22,7 +22,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: 'reports/waiting',
+        redirectTo: 'reports/:waiting',
         pathMatch: 'full'
       },
     ],

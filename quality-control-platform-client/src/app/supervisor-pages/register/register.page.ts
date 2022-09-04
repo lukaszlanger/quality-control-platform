@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
-import { onAuthStateChanged } from 'firebase/auth';
 import { Roles } from '../../models/dtos/roles';
 import { Workers } from '../../models/dtos/workers';
 import { AuthService } from '../../services/auth.service';
@@ -44,17 +43,6 @@ export class RegisterPage implements OnInit {
       .subscribe((response: Roles[]) => (this.rolesService.roles = response));
   }
 
-  ngOnInit() {
-    this.registerForm = this.form.group({
-      name: ['', [Validators.required, Validators.minLength(2)]],
-      surname: ['', [Validators.required, Validators.minLength(2)]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      role: [null, [Validators.required]],
-      isActive: [null],
-    });
-  }
-
   get email(): string {
     return this.registerForm.get('email').value;
   }
@@ -72,6 +60,17 @@ export class RegisterPage implements OnInit {
   }
   get isActive(): boolean {
     return this.registerForm.get('isActive').value;
+  }
+
+  ngOnInit() {
+    this.registerForm = this.form.group({
+      name: ['', [Validators.required, Validators.minLength(2)]],
+      surname: ['', [Validators.required, Validators.minLength(2)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      role: [null, [Validators.required]],
+      isActive: [null],
+    });
   }
 
   async register() {

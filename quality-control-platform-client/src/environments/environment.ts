@@ -5,13 +5,13 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: "AIzaSyCrVPd0Yj_uLUIIGXa31oP9jTV8xXTap94",
-    authDomain: "quality-control-platform.firebaseapp.com",
-    projectId: "quality-control-platform",
-    storageBucket: "quality-control-platform.appspot.com",
-    messagingSenderId: "1072109294131",
-    appId: "1:1072109294131:web:867cf0fce3d3ec8c910946",
-    measurementId: "G-9R3FGGG9JG"
+    apiKey: 'AIzaSyCrVPd0Yj_uLUIIGXa31oP9jTV8xXTap94',
+    authDomain: 'quality-control-platform.firebaseapp.com',
+    projectId: 'quality-control-platform',
+    storageBucket: 'quality-control-platform.appspot.com',
+    messagingSenderId: '1072109294131',
+    appId: '1:1072109294131:web:867cf0fce3d3ec8c910946',
+    measurementId: 'G-9R3FGGG9JG'
   }
 };
 

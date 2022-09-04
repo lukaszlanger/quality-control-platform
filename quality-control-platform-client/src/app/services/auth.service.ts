@@ -30,8 +30,8 @@ export class AuthService {
   private currentUser: BehaviorSubject<any> = new BehaviorSubject(null);
 
   constructor(
-    private router: Router,
     public auth: Auth,
+    private router: Router,
     private workersService: WorkersService,
     private rolesService: RolesService
   ) {
@@ -107,7 +107,6 @@ export class AuthService {
     }
   }
 
-  // TODO sprawdzic czy isActive
   async loginUser({ email, password }) {
     let userObject: User;
     try {
@@ -131,10 +130,10 @@ export class AuthService {
             role: roleToken,
           };
         } else {
-          alert('Błąd! Rola niedozwolona');
+          alert('Błąd! Rola niedozwolona.');
         }
       } else {
-        alert('brak uzytkownika');
+        alert('Błąd logowania! Użytkownik nie istnieje.');
       }
 
       return of(userObject).pipe(
@@ -143,8 +142,8 @@ export class AuthService {
           this.currentUser.next(user);
         })
       );
-    } catch (e) {
-      return null;
+    } catch (error) {
+      return error;
     }
   }
 

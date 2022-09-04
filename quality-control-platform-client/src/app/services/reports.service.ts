@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { GlobalVariables } from '../global-variables';
 import { Reports } from '../models/dtos/reports';

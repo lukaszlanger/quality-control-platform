@@ -24,9 +24,6 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 })
 export class ReportsPage implements OnInit {
   currentUser: User;
-  DamageType = DamageType;
-  Decision = Decision;
-  ReportAcceptance = ReportAcceptance;
   reportDetails = null;
   public routeId: string;
 
@@ -326,10 +323,10 @@ export class ReportsPage implements OnInit {
     reportId: number
   ) {
     const notification: Notifications = {
-      sender: sender,
-      receiver: receiver,
-      reportId: reportId,
-      type: type,
+      sender,
+      receiver,
+      reportId,
+      type,
     };
     this.notificationsService.postNotification(notification);
   }
