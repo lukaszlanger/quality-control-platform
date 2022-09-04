@@ -1,8 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Raporty
-    </ion-title>
+    <ion-title> Raporty </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -10,21 +8,22 @@
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Strona główna</ion-title>
-      
     </ion-toolbar>
   </ion-header>
 
   <ion-card>
     <ion-item lines="none">
       <ion-avatar slot="start">
-        <img src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg" />
-      </ion-avatar >
-      <ion-card-title>
-        Witaj, {{ currentUser.displayName }}
-      </ion-card-title>
-      <ion-button fill="outline" slot="end" (click)="logout()">Wyloguj</ion-button>
+        <img
+          src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg"
+        />
+      </ion-avatar>
+      <ion-card-title> Witaj, {{ currentUser.displayName }} </ion-card-title>
+      <ion-button fill="outline" slot="end" (click)="logout()"
+        >Wyloguj</ion-button
+      >
     </ion-item>
-   
+
     <ion-card-content>
       Twój identyfikator: {{ currentUser.uid }}
     </ion-card-content>
@@ -32,45 +31,57 @@
 
   <ion-card>
     <ion-card-header>
-      <ion-card-title>
-        Oczekujące raporty
-      </ion-card-title>
+      <ion-card-title> Oczekujące raporty </ion-card-title>
     </ion-card-header>
-    <div *ngFor="let r of reportsService.reports" >
-      <ion-list lines="none" *ngIf="!r.isArchived && r.workerId === currentWorker.workerId">
+    <div *ngFor="let r of reportsService.reports">
+      <ion-list
+        lines="none"
+        *ngIf="!r.isArchived && r.workerId === currentWorker.workerId"
+      >
         <ion-item-sliding>
           <ion-item>
-            <ion-badge *ngIf="r.creationDate !== '0001-01-01T00:00:00'" slot="start">
+            <ion-badge
+              *ngIf="r.creationDate !== '0001-01-01T00:00:00'"
+              slot="start"
+            >
               {{r.creationDate | date: 'dd.MM.yyyy'}}
             </ion-badge>
             <ion-label>
               <h2>
-                Raport nr {{ r.reportId }} {{ ReportAcceptance[r.reportAcceptance] }}
+                Raport nr {{ r.reportId }} {{
+                ReportAcceptance[r.reportAcceptance] }}
               </h2>
-              <p>
-                Wada: {{ DamageType[r.damageType] }}
-              </p>
+              <p>Wada: {{ DamageType[r.damageType] }}</p>
             </ion-label>
-              <ion-icon *ngIf="r.reportAcceptance === 0" color="warning" name="pause-circle-outline"></ion-icon>
+            <ion-icon
+              *ngIf="r.reportAcceptance === 0"
+              color="warning"
+              name="pause-circle-outline"
+            ></ion-icon>
           </ion-item>
 
           <ion-item-options side="start">
             <ion-item-option id="{{'open-modal-' + r.reportId}}">
-              <ion-icon name="information-circle-outline" style="font-size: 25px;"></ion-icon>
+              <ion-icon
+                name="information-circle-outline"
+                style="font-size: 25px"
+              ></ion-icon>
             </ion-item-option>
           </ion-item-options>
         </ion-item-sliding>
       </ion-list>
 
-      <ion-modal #modal trigger="{{'open-modal-' + r.reportId}}" [presentingElement]="reportDetails">
+      <ion-modal
+        #modal
+        trigger="{{'open-modal-' + r.reportId}}"
+        [presentingElement]="reportDetails"
+      >
         <ng-template>
           <ion-header>
             <ion-toolbar>
               <ion-title>Informacje</ion-title>
               <ion-buttons slot="end">
-                <ion-button (click)="modal.dismiss()">
-                  Zamknij
-                </ion-button>
+                <ion-button (click)="modal.dismiss()"> Zamknij </ion-button>
               </ion-buttons>
             </ion-toolbar>
           </ion-header>
@@ -78,7 +89,10 @@
             <ion-list>
               <ion-item>
                 <ion-avatar slot="start">
-                  <ion-icon name="person-outline" style="font-size: 30px;"></ion-icon>
+                  <ion-icon
+                    name="person-outline"
+                    style="font-size: 30px"
+                  ></ion-icon>
                 </ion-avatar>
                 <div *ngFor="let w of workersService.workers">
                   <div *ngIf="w.workerId === r.workerId">
@@ -91,7 +105,10 @@
               </ion-item>
               <ion-item>
                 <ion-avatar slot="start">
-                  <ion-icon name="cube-outline" style="font-size: 30px;"></ion-icon>
+                  <ion-icon
+                    name="cube-outline"
+                    style="font-size: 30px"
+                  ></ion-icon>
                 </ion-avatar>
                 <div *ngFor="let i of itemsService.items">
                   <div *ngIf="i.itemId === r.itemId">
@@ -106,9 +123,21 @@
               </ion-item>
               <ion-item>
                 <ion-avatar slot="start">
-                  <ion-icon *ngIf="r.reportAcceptance === 0" name="pause-circle-outline" style="font-size: 30px;"></ion-icon>
-                  <ion-icon *ngIf="r.reportAcceptance === 1" name="checkmark-circle-outline" style="font-size: 30px;"></ion-icon>
-                  <ion-icon *ngIf="r.reportAcceptance === 2" name="close-circle-outline" style="font-size: 30px;"></ion-icon>
+                  <ion-icon
+                    *ngIf="r.reportAcceptance === 0"
+                    name="pause-circle-outline"
+                    style="font-size: 30px"
+                  ></ion-icon>
+                  <ion-icon
+                    *ngIf="r.reportAcceptance === 1"
+                    name="checkmark-circle-outline"
+                    style="font-size: 30px"
+                  ></ion-icon>
+                  <ion-icon
+                    *ngIf="r.reportAcceptance === 2"
+                    name="close-circle-outline"
+                    style="font-size: 30px"
+                  ></ion-icon>
                 </ion-avatar>
                 <ion-label>
                   <h2>Status raportu</h2>
@@ -117,7 +146,10 @@
               </ion-item>
               <ion-item>
                 <ion-avatar slot="start">
-                  <ion-icon name="duplicate-outline" style="font-size: 30px;"></ion-icon>
+                  <ion-icon
+                    name="duplicate-outline"
+                    style="font-size: 30px"
+                  ></ion-icon>
                 </ion-avatar>
                 <ion-label>
                   <h2>Data utworzenia raportu</h2>
@@ -126,7 +158,10 @@
               </ion-item>
               <ion-item>
                 <ion-avatar slot="start">
-                  <ion-icon name="thumbs-down-outline" style="font-size: 25px;"></ion-icon>
+                  <ion-icon
+                    name="thumbs-down-outline"
+                    style="font-size: 25px"
+                  ></ion-icon>
                 </ion-avatar>
                 <ion-label>
                   <h2>Powód zgłoszenia</h2>
@@ -135,7 +170,10 @@
               </ion-item>
               <ion-item>
                 <ion-avatar slot="start">
-                  <ion-icon name="pricetag-outline" style="font-size: 30px;"></ion-icon>
+                  <ion-icon
+                    name="pricetag-outline"
+                    style="font-size: 30px"
+                  ></ion-icon>
                 </ion-avatar>
                 <ion-label>
                   <h2>Opis</h2>
@@ -145,13 +183,13 @@
               <ion-item>
                 <ion-label>
                   <h2>Zdjęcie szkody dołączone do raportu</h2>
-                  <p><img src="{{r.photosPath}}"></p>
+                  <p><img src="{{r.photosPath}}" /></p>
                 </ion-label>
               </ion-item>
               <ion-item>
                 <ion-label>
                   <h2>Podpis cyfrowy pracownika</h2>
-                  <p><img src="{{r.signature}}"></p>
+                  <p><img src="{{r.signature}}" /></p>
                 </ion-label>
               </ion-item>
             </ion-list>
@@ -163,46 +201,62 @@
 
   <ion-card>
     <ion-card-header>
-      <ion-card-title>
-        Zarchiwizowane raporty
-      </ion-card-title>
+      <ion-card-title> Zarchiwizowane raporty </ion-card-title>
     </ion-card-header>
     <div *ngFor="let r of reportsService.reports">
-      <ion-list lines="none" *ngIf="r.isArchived && r.workerId === currentWorker.workerId">
+      <ion-list
+        lines="none"
+        *ngIf="r.isArchived && r.workerId === currentWorker.workerId"
+      >
         <ion-item-sliding>
           <ion-item>
-            <ion-badge *ngIf="r.creationDate !== '0001-01-01T00:00:00'" slot="start">
+            <ion-badge
+              *ngIf="r.creationDate !== '0001-01-01T00:00:00'"
+              slot="start"
+            >
               {{r.creationDate | date: 'dd.MM.yyyy'}}
             </ion-badge>
             <ion-label>
               <h2>
-                Raport nr {{ r.reportId }} {{ ReportAcceptance[r.reportAcceptance] }}
+                Raport nr {{ r.reportId }} {{
+                ReportAcceptance[r.reportAcceptance] }}
               </h2>
-              <p>
-                Wada: {{ DamageType[r.damageType] }}
-              </p>
+              <p>Wada: {{ DamageType[r.damageType] }}</p>
             </ion-label>
-            <ion-icon *ngIf="r.reportAcceptance === 1" color="success" name="checkmark-circle-outline"></ion-icon>
-            <ion-icon *ngIf="r.reportAcceptance === 2" color="danger" name="close-circle-outline"></ion-icon>
+            <ion-icon
+              *ngIf="r.reportAcceptance === 1"
+              color="success"
+              name="checkmark-circle-outline"
+            ></ion-icon>
+            <ion-icon
+              *ngIf="r.reportAcceptance === 2"
+              color="danger"
+              name="close-circle-outline"
+            ></ion-icon>
           </ion-item>
 
           <ion-item-options side="start">
             <ion-item-option id="{{'open-modal-archived-' + r.reportId}}">
-              <ion-icon name="information-circle-outline" style="font-size: 25px;"></ion-icon>
+              <ion-icon
+                name="information-circle-outline"
+                style="font-size: 25px"
+              ></ion-icon>
             </ion-item-option>
           </ion-item-options>
         </ion-item-sliding>
       </ion-list>
 
-      <ion-modal #modal trigger="{{'open-modal-archived-' + r.reportId}}" [presentingElement]="reportDetails">
+      <ion-modal
+        #modal
+        trigger="{{'open-modal-archived-' + r.reportId}}"
+        [presentingElement]="reportDetails"
+      >
         <ng-template>
           <ion-header>
             <ion-toolbar>
               <ion-title>Informacje</ion-title>
               <ion-buttons slot="end">
-                <ion-button (click)="modal.dismiss()">
-                  Zamknij
-                </ion-button>
+                <ion-button (click)="modal.dismiss()"> Zamknij </ion-button>
               </ion-buttons>
             </ion-toolbar>
           </ion-header>
@@ -210,7 +264,10 @@
             <ion-list>
               <ion-item>
                 <ion-avatar slot="start">
-                  <ion-icon name="person-outline" style="font-size: 30px;"></ion-icon>
+                  <ion-icon
+                    name="person-outline"
+                    style="font-size: 30px"
+                  ></ion-icon>
                 </ion-avatar>
                 <div *ngFor="let w of workersService.workers">
                   <div *ngIf="w.workerId === r.workerId">
@@ -223,7 +280,10 @@
               </ion-item>
               <ion-item>
                 <ion-avatar slot="start">
-                  <ion-icon name="cube-outline" style="font-size: 30px;"></ion-icon>
+                  <ion-icon
+                    name="cube-outline"
+                    style="font-size: 30px"
+                  ></ion-icon>
                 </ion-avatar>
                 <div *ngFor="let i of itemsService.items">
                   <div *ngIf="i.itemId === r.itemId">
@@ -238,9 +298,21 @@
               </ion-item>
               <ion-item>
                 <ion-avatar slot="start">
-                  <ion-icon *ngIf="r.reportAcceptance === 0" name="pause-circle-outline" style="font-size: 30px;"></ion-icon>
-                  <ion-icon *ngIf="r.reportAcceptance === 1" name="checkmark-circle-outline" style="font-size: 30px;"></ion-icon>
-                  <ion-icon *ngIf="r.reportAcceptance === 2" name="close-circle-outline" style="font-size: 30px;"></ion-icon>
+                  <ion-icon
+                    *ngIf="r.reportAcceptance === 0"
+                    name="pause-circle-outline"
+                    style="font-size: 30px"
+                  ></ion-icon>
+                  <ion-icon
+                    *ngIf="r.reportAcceptance === 1"
+                    name="checkmark-circle-outline"
+                    style="font-size: 30px"
+                  ></ion-icon>
+                  <ion-icon
+                    *ngIf="r.reportAcceptance === 2"
+                    name="close-circle-outline"
+                    style="font-size: 30px"
+                  ></ion-icon>
                 </ion-avatar>
                 <ion-label>
                   <h2>Status raportu</h2>
@@ -249,16 +321,24 @@
               </ion-item>
               <ion-item>
                 <ion-avatar slot="start">
-                  <ion-icon name="duplicate-outline" style="font-size: 30px;"></ion-icon>
+                  <ion-icon
+                    name="duplicate-outline"
+                    style="font-size: 30px"
+                  ></ion-icon>
                 </ion-avatar>
                 <ion-label>
                   <h2>Data utworzenia raportu</h2>
                   <p>{{r.creationDate | date: 'dd.MM.yyyy r. HH:MM'}}</p>
                 </ion-label>
               </ion-item>
-              <ion-item *ngIf="r.archivingDate !== '0001-01-01T00:00:00' && r.archivingDate !== '1970-01-01T00:00:00'">
+              <ion-item
+                *ngIf="r.archivingDate !== '0001-01-01T00:00:00' && r.archivingDate !== '1970-01-01T00:00:00'"
+              >
                 <ion-avatar slot="start">
-                  <ion-icon name="archive-outline" style="font-size: 25px;"></ion-icon>
+                  <ion-icon
+                    name="archive-outline"
+                    style="font-size: 25px"
+                  ></ion-icon>
                 </ion-avatar>
                 <ion-label>
                   <h2>Data archiwizacji</h2>
@@ -267,7 +347,10 @@
               </ion-item>
               <ion-item>
                 <ion-avatar slot="start">
-                  <ion-icon name="thumbs-down-outline" style="font-size: 25px;"></ion-icon>
+                  <ion-icon
+                    name="thumbs-down-outline"
+                    style="font-size: 25px"
+                  ></ion-icon>
                 </ion-avatar>
                 <ion-label>
                   <h2>Powód zgłoszenia</h2>
@@ -276,16 +359,24 @@
               </ion-item>
               <ion-item>
                 <ion-avatar slot="start">
-                  <ion-icon name="pricetag-outline" style="font-size: 30px;"></ion-icon>
+                  <ion-icon
+                    name="pricetag-outline"
+                    style="font-size: 30px"
+                  ></ion-icon>
                 </ion-avatar>
                 <ion-label>
                   <h2>Opis</h2>
                   <p>{{ r.description }}</p>
                 </ion-label>
               </ion-item>
-              <ion-item *ngIf="r.archivingDate !== '0001-01-01T00:00:00' && r.archivingDate !== '1970-01-01T00:00:00'">
+              <ion-item
+                *ngIf="r.archivingDate !== '0001-01-01T00:00:00' && r.archivingDate !== '1970-01-01T00:00:00'"
+              >
                 <ion-avatar slot="start">
-                  <ion-icon name="trash-bin-outline" style="font-size: 30px;"></ion-icon>
+                  <ion-icon
+                    name="trash-bin-outline"
+                    style="font-size: 30px"
+                  ></ion-icon>
                 </ion-avatar>
                 <ion-label>
                   <h2>Produkt przeznaczony</h2>
@@ -295,13 +386,13 @@
               <ion-item>
                 <ion-label>
                   <h2>Zdjęcie szkody dołączone do raportu</h2>
-                  <p><img src="{{r.photosPath}}"></p>
+                  <p><img src="{{r.photosPath}}" /></p>
                 </ion-label>
               </ion-item>
               <ion-item>
                 <ion-label>
                   <h2>Podpis cyfrowy pracownika</h2>
-                  <p><img src="{{r.signature}}"></p>
+                  <p><img src="{{r.signature}}" /></p>
                 </ion-label>
               </ion-item>
             </ion-list>
@@ -310,5 +401,4 @@
       </ion-modal>
     </div>
   </ion-card>
-
 </ion-content>

@@ -152,7 +152,7 @@ export class Tab2Page implements OnInit {
             if (url) {
               this.uploadedSignaturePhotoPath = url;
               this.reportForm
-                .get('_signature')
+                .get('_signature') // TODO reportphoto
                 .setValue(this.uploadedSignaturePhotoPath);
             }
           });
@@ -226,6 +226,9 @@ export class Tab2Page implements OnInit {
   }
 
   // FIXME naprawić problem z dwuklikiem przycisku/pustym formularzem dla signature
+
+  // eslint-disable-next-line no-trailing-spaces
+  
   private async saveCanvas() {
     const loading = await this.loadingController.create();
     await loading.present();
@@ -235,10 +238,8 @@ export class Tab2Page implements OnInit {
       '__' +
       this.currentUser.uid;
     const fileStoragePath = `signatures/${this.signaturePhotoName}`;
-    const imageFireStorageReference =
-      this.angularFireStorage.ref(fileStoragePath);
-    this.fireUploadTask = this.angularFireStorage
-      .ref(fileStoragePath)
+    const imageFireStorageReference = this.angularFireStorage.ref(fileStoragePath);
+    this.fireUploadTask = imageFireStorageReference
       .putString(signature, 'base64', { contentType: 'image/png' });
     this.fireUploadTask
       .snapshotChanges()

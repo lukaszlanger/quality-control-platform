@@ -7,11 +7,15 @@
 <ion-content class="content-center">
   <ion-card>
     <ion-card-header>
-      <ion-card-subtitle>Wykres kontrolowanych przedmiotów z podziałem na</ion-card-subtitle>
+      <ion-card-subtitle
+        >Wykres kontrolowanych przedmiotów z podziałem na</ion-card-subtitle
+      >
       <ion-card-title>Typ szkody</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-button fill="outline" size="small" (click)="onMonthButtonClick()">{{months[chosenMonth]}}</ion-button>
+      <ion-button fill="outline" size="small" (click)="onMonthButtonClick()"
+        >{{months[chosenMonth]}}</ion-button
+      >
       <canvas #barChart></canvas>
     </ion-card-content>
   </ion-card>

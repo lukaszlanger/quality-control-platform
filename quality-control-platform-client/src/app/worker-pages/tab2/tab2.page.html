@@ -1,15 +1,12 @@
 <ion-header [translucent]="true">
-    <ion-toolbar>
-      <ion-title>
-        Raportuj szkodę
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-toolbar>
+    <ion-title> Raportuj szkodę </ion-title>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      
       <ion-title size="large">Raportuj szkodę</ion-title>
     </ion-toolbar>
   </ion-header>
@@ -20,48 +17,93 @@
         <ion-row color="primary" justify-content-center>
           <ion-col size-md="100%">
             <ion-card-header>
-              <ion-card-title>
-                Utwórz raport
-              </ion-card-title>
+              <ion-card-title> Utwórz raport </ion-card-title>
             </ion-card-header>
             <div>
               <ion-item>
                 <ion-label>Przedmiot</ion-label>
-                <ion-select required formControlName="_itemId" [(ngModel)]="report.itemId" placeholder="Wybierz przedmiot" [okText]="'Ok'" [cancelText]="'Anuluj'" >
-                  <ion-select-option *ngFor="let i of itemsService.items" value="{{i.itemId}}">{{i.serialNumber}} {{i.manufacturer}}</ion-select-option>
+                <ion-select
+                  required
+                  formControlName="_itemId"
+                  [(ngModel)]="report.itemId"
+                  placeholder="Wybierz przedmiot"
+                  [okText]="'Ok'"
+                  [cancelText]="'Anuluj'"
+                >
+                  <ion-select-option
+                    *ngFor="let i of itemsService.items"
+                    value="{{i.itemId}}"
+                    >{{i.serialNumber}} {{i.manufacturer}}</ion-select-option
+                  >
                 </ion-select>
               </ion-item>
               <ion-item>
                 <ion-label>Rodzaj uszkodzenia</ion-label>
-                <ion-select required formControlName="_damageType" [(ngModel)]="report.damageType" placeholder="Wybierz rodzaj uszkodzenia" [okText]="'Ok'" [cancelText]="'Anuluj'">
-                  <ion-select-option *ngFor="let d of damageTypeKeys() | keyvalue" value="{{d.key}}">{{ d.value }}</ion-select-option>
+                <ion-select
+                  required
+                  formControlName="_damageType"
+                  [(ngModel)]="report.damageType"
+                  placeholder="Wybierz rodzaj uszkodzenia"
+                  [okText]="'Ok'"
+                  [cancelText]="'Anuluj'"
+                >
+                  <ion-select-option
+                    *ngFor="let d of damageTypeKeys() | keyvalue"
+                    value="{{d.key}}"
+                    >{{ d.value }}</ion-select-option
+                  >
                 </ion-select>
               </ion-item>
               <ion-item>
-                <ion-textarea formControlName="_description" [(ngModel)]="report.description" type="text" placeholder="Opis"></ion-textarea>
+                <ion-textarea
+                  formControlName="_description"
+                  [(ngModel)]="report.description"
+                  type="text"
+                  placeholder="Opis"
+                ></ion-textarea>
               </ion-item>
               <ion-item>
-                <ion-button (click)="takePhoto()" >
+                <ion-button (click)="takePhoto()">
                   <ion-icon name="camera-outline"></ion-icon>Dołącz zdjęcie
                 </ion-button>
-                <input #inputFile id="input-file" style="opacity:0" type="file" (change)="uploadReportPhoto($event.target.files)"/>
-              </ion-item> 
+                <input
+                  #inputFile
+                  id="input-file"
+                  style="opacity: 0"
+                  type="file"
+                  (change)="uploadReportPhoto($event.target.files)"
+                />
+              </ion-item>
               <ion-item>
                 <ion-label position="stacked">Podpis cyfrowy</ion-label>
                 <ion-buttons>
-                  <ion-button expand="full" (click)="saveCanvas()"><ion-icon name="save-outline"></ion-icon></ion-button>
-                  <ion-button expand="full" (click)="undoCanvas()"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
-                  <ion-button expand="full" (click)="clearCanvas()"><ion-icon name="trash-outline"></ion-icon></ion-button>
+                  <ion-button expand="full" (click)="saveCanvas()"
+                    ><ion-icon name="save-outline"></ion-icon
+                  ></ion-button>
+                  <ion-button expand="full" (click)="undoCanvas()"
+                    ><ion-icon name="arrow-back-outline"></ion-icon
+                  ></ion-button>
+                  <ion-button expand="full" (click)="clearCanvas()"
+                    ><ion-icon name="trash-outline"></ion-icon
+                  ></ion-button>
                 </ion-buttons>
                 <div class="signature-pad">
                   <div>
-                    <canvas class="signature-pad-canvas" #canvas width="900" height="400" style="touch-action: none;"></canvas>
+                    <canvas
+                      class="signature-pad-canvas"
+                      #canvas
+                      width="900"
+                      height="400"
+                      style="touch-action: none"
+                    ></canvas>
                   </div>
                 </div>
               </ion-item>
             </div>
             <div>
-              <ion-button size="medium" type="submit" expand="block" >Prześlij</ion-button>
+              <ion-button size="medium" type="submit" expand="block"
+                >Prześlij</ion-button
+              >
             </div>
           </ion-col>
         </ion-row>

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit } from '@angular/core';
 import { Items } from '../../models/dtos/items';
 import { Reports } from '../../models/dtos/reports';

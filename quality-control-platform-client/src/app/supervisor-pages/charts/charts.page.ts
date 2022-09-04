@@ -1,11 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Chart, registerables } from 'chart.js';
 import { Reports } from 'src/app/models/dtos/reports';
 import { DamageType } from 'src/app/models/enums/damage-type';
-import { Decision } from 'src/app/models/enums/decision';
 import { ReportsService } from 'src/app/services/reports.service';
 Chart.register(...registerables);
 

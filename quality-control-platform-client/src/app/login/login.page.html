@@ -2,15 +2,11 @@
   <ion-card>
     <ion-item lines="none">
       <ion-avatar class="item-avatar" slot="start">
-        <img src="../../../assets/icon/logo.png" height="200px" width="200px">
-      </ion-avatar >
+        <img src="../../../assets/icon/logo.png" height="200px" width="200px" />
+      </ion-avatar>
       <ion-label>
-        <h3>
-          Quality Control Platform
-        </h3>
-        <p>
-          Platforma do analizy wyników kontroli jakości
-        </p>
+        <h3>Quality Control Platform</h3>
+        <p>Platforma do analizy wyników kontroli jakości</p>
       </ion-label>
     </ion-item>
   </ion-card>
@@ -18,9 +14,7 @@
   <form [formGroup]="loginForm" (submit)="login()">
     <ion-card>
       <ion-card-header>
-        <ion-card-title>
-          Zaloguj się
-        </ion-card-title>
+        <ion-card-title> Zaloguj się </ion-card-title>
       </ion-card-header>
       <ion-item lines="full">
         <ion-label position="floating">Email</ion-label>
@@ -28,7 +22,11 @@
       </ion-item>
       <ion-item lines="full">
         <ion-label position="floating">Hasło</ion-label>
-        <ion-input type="password" formControlName="password" required></ion-input>
+        <ion-input
+          type="password"
+          formControlName="password"
+          required
+        ></ion-input>
       </ion-item>
       <ion-row>
         <ion-col>

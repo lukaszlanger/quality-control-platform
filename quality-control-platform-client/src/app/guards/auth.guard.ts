@@ -5,7 +5,7 @@ import { take, filter, map } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
   constructor(
@@ -18,9 +18,9 @@ export class AuthGuard implements CanActivate {
     const roleExpected = route.data?.role;
 
     return this.authService.getCurrentUser().pipe(
-      filter(val => val !== null),
+      filter((val) => val !== null),
       take(1),
-      map(user => {
+      map((user) => {
         if (!user) {
           this.showNotLoggedInAlert();
           return this.router.parseUrl('/login');
@@ -42,17 +42,17 @@ export class AuthGuard implements CanActivate {
     const alert = await this.alertController.create({
       header: 'Błąd autoryzacji',
       message: 'Nie jesteś uprawniony do odwiedzenia tej strony!',
-      buttons: ['OK']
+      buttons: ['OK'],
     });
     alert.present();
-  };
+  }
 
   async showNotLoggedInAlert() {
     const alert = await this.alertController.create({
       header: 'Błąd autoryzacji',
       message: 'Nie jesteś zalogowany! Spróbuj ponownie',
-      buttons: ['OK']
+      buttons: ['OK'],
     });
     alert.present();
-  };
+  }
 }

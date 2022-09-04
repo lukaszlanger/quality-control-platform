@@ -6,8 +6,8 @@ import { ChartsPage } from './charts.page';
 const routes: Routes = [
   {
     path: '',
-    component: ChartsPage
-  }
+    component: ChartsPage,
+  },
 ];
 
 @NgModule({

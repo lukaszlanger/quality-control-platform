@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
@@ -25,7 +26,9 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 export class ReportsPage implements OnInit {
   currentUser: User;
   reportDetails = null;
-  public routeId: string;
+  routeId: string;
+  DamageType = DamageType;
+  Decision = Decision;
 
   constructor(
     private reportsService: ReportsService,

@@ -1,8 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Powiadomienia
-    </ion-title>
+    <ion-title> Powiadomienia </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -29,12 +27,23 @@
                 Raport {{ n.reportId }} został odrzucony i zarchiwizowany
               </p>
             </ion-label>
-            <ion-icon *ngIf="n.type === 0" color="success" name="checkmark-circle-outline"></ion-icon>
-            <ion-icon *ngIf="n.type === 1" color="danger" name="close-circle-outline"></ion-icon>
+            <ion-icon
+              *ngIf="n.type === 0"
+              color="success"
+              name="checkmark-circle-outline"
+            ></ion-icon>
+            <ion-icon
+              *ngIf="n.type === 1"
+              color="danger"
+              name="close-circle-outline"
+            ></ion-icon>
           </ion-item>
           <ion-item-options side="end">
-            <ion-item-option color="danger" (click)="deleteNotification(n.notificationId)">
-              <ion-icon name="trash-outline" style="font-size: 25px;"></ion-icon>
+            <ion-item-option
+              color="danger"
+              (click)="deleteNotification(n.notificationId)"
+            >
+              <ion-icon name="trash-outline" style="font-size: 25px"></ion-icon>
             </ion-item-option>
           </ion-item-options>
         </ion-item-sliding>
