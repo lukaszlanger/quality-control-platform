@@ -92,6 +92,7 @@ export class ReportsPage implements OnInit {
       null,
       report.reportId
     );
+    console.log(report);
   }
 
   getBase64ImageFromURL(url) {
@@ -316,8 +317,6 @@ export class ReportsPage implements OnInit {
     const pdfObject = pdfMake.createPdf(docDefinition);
     pdfObject.download();
   }
-
-  downloadPdf() {}
 
   createNotification(
     type: number,
